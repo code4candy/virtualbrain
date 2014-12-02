@@ -1,9 +1,16 @@
+<h2>Hi brainless!</h2>
 
-<h1><%= greeting %></h1>
 <p>
 THIS IS YOUR VIRTUALbRAIN 
 </p>
-<form>
-  Do something: <input task="task"/>
+<form action='/' method='POST'>
+  Do something: <input name="task"/>
+  <input type="submit" value="add to list"/>
 </form>
+
+<% if(task && !task.empty?) %>
+<ul>
+<li><%= task %></li>
+</ul>
+<% end %>
 

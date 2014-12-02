@@ -4,10 +4,10 @@ module VirtualBrain
       include VirtualBrain::Controller
 
       action 'Index' do 
-        expose :name
+        expose :task
 
         def call(params)
-          @name = params[:name]
+          @task = params[:task]
         end
       end
     end

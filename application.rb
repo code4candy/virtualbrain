@@ -1,20 +1,41 @@
 require 'lotus'
+require 'lotus/model'
 
 module VirtualBrain
   class Application < Lotus::Application
     configure do
       routes do
-        get '/', to: 'home#index'
+        # zeigt aus welcher Datei der Browserpfad seine Daten bekommen soll
+        get '/', to: 'home#index' 
+        post '/', to: 'home#index'
       end
 
       load_paths << [
         'controllers',
         'models',
-        'views'
+        'views',
+        'repositories'
       ]
       layout :application
     end
 
     load!
   end
+  CONNECTION_URI = "sqlite://#{ __dir__ }/test.db"
+
+  Lotus::Model.configure do
+  adapter type: :sql, uri: CONNECTION_URI
+
+  mapping do
+    collection :tasks do
+      entity     VirtualBrain::Models::Task
+      repository VirtualBrain::Repositories::TaskRepository
+
+      attribute :id,   Integer
+      attribute :name, String
+    end
+  end
+end
+
+Lotus::Model.load!
 end
