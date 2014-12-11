@@ -8,6 +8,7 @@ module VirtualBrain
         # zeigt aus welcher Datei der Browserpfad seine Daten bekommen soll
         get '/', to: 'home#index' 
         post '/', to: 'home#index'
+        get '/imprint', to: 'imprint#page'
       end
 
       load_paths << [
