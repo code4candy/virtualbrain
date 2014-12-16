@@ -7,7 +7,7 @@ module VirtualBrain
       routes do
         # zeigt aus welcher Datei der Browserpfad seine Daten bekommen soll
         get '/', to: 'home#index' 
-        post '/', to: 'home#index'
+        post '/tasks/create', to: 'home#create'
         post '/tasks/delete', to: 'home#delete'
         get '/imprint', to: 'imprint#page'
       end
@@ -40,4 +40,8 @@ module VirtualBrain
 end
 
 Lotus::Model.load!
+end
+
+def h(text)
+  Rack::Utils.escape_html(text)
 end

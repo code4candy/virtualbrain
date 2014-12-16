@@ -3,8 +3,8 @@
 <p>
 THIS IS YOUR VIRTUALbRAIN 
 </p>
-<form action='/' method='POST'>
-  Do something: <input name="task"/>
+<form action='/tasks/create' method='POST'>
+  Do something: <input name="task" autofocus="true"/>
   <input type="submit" value="add to list"/>
 </form>
 
@@ -12,14 +12,13 @@ THIS IS YOUR VIRTUALbRAIN
 	<% tasks.each do |task| %>
 		<li>
 			<form action="/tasks/delete" METHOD="POST">
-				<%= task.name %>
+				<%= h(task.name) %>
 				<input type="hidden" value="<%= task.id %>" name="task_id"/>
 				<button style="color:#880000" tabindex="15">delete</button>
 			</form>
 		</li>
 	<% end %>
 </ul>
-
 
 <a style="color:#005252" href="/imprint">imprint</a>
 
