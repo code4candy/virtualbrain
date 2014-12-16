@@ -5,7 +5,7 @@ require 'lotus/model/adapters/sql_adapter'
 
 CONNECTION_URI = "sqlite://#{ __dir__ }/test.db"
 
-database = Sequel.connect(connection_uri)  #übersetzt ruby in SQL
+database = Sequel.connect(CONNECTION_URI)  #übersetzt ruby in SQL
 
 database.create_table! :tasks do
   primary_key :id
