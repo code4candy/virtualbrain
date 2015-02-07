@@ -2,8 +2,12 @@
 
 
 <h2 style="color:#008686">Hi brainless!</h2> 
-<a style="color:#005252" href="/users/new">sign in</a>
-<a style="color:#005252" href="/users/new">register</a>
+<% if user %>		<!-- Abfrage, ob als User eingeloggt, dann Anzeige auf Startseite-->
+	<a style="color:#005252" href="/users/signin">log out</a>
+<% else%>
+	<a style="color:#005252" href="/users/signin">sign in</a>
+	<a style="color:#005252" href="/users/new">register</a>
+<% end %>
 
 <p>
 THIS IS YOUR VIRTUALbRAIN 

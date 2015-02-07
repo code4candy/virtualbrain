@@ -1,4 +1,4 @@
-require 'lotus'
+  require 'lotus'
 require 'lotus/model'
 
 module VirtualBrain
@@ -12,6 +12,8 @@ module VirtualBrain
         post  '/tasks/delete',  to: 'home#delete'
         get   '/users/new',     to: 'users#new' #liefert das register-Formular aus
         post  '/users/create',  to: 'users#create'
+        get   '/users/signin',  to: 'users#showsignin'
+        post  '/sessions/create', to: 'sessions#create'
         get   '/imprint',       to: 'imprint#page'
 
       end

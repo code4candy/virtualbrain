@@ -1,3 +1,5 @@
+require 'lotus/action/session' #bereitgestellte Klasse von Lotus einbinden  
+
 module VirtualBrain
   module Controllers
     module Home
@@ -7,9 +9,12 @@ module VirtualBrain
       # = seperation of concerns (hier, für jede Funktion eigene ACTION erstellen )
       # = die 4 Standardmethoden eines Controllers! für das Datenmanagement
       action 'Index' do 
+        include Lotus::Action::Session
         expose :tasks
+        expose :user
 
         def call(params)
+          puts "SESSION: #{session[:user]}"
           if params[:newest]
             @tasks = VirtualBrain::Repositories::TaskRepository.latest_tasks
           elsif params[:alphabetically]
@@ -17,6 +22,8 @@ module VirtualBrain
           else
             @tasks = VirtualBrain::Repositories::TaskRepository.all
           end
+
+          @user = VirtualBrain::Repositories::UserRepository.by_id(session[:user])
         end
       end
 

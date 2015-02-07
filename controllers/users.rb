@@ -19,8 +19,14 @@ module VirtualBrain
         	#User-Objekt in Datenbank speichern
         	VirtualBrain::Repositories::UserRepository.create(new_user)
         	redirect_to '/' #danach wieder auf home-seite gehen
-    	end
+    	  end
       end
+
+      action 'Showsignin' do
+        def call(params)
+        end
+      end
+
     end
   end
 end
