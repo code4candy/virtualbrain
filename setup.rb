@@ -7,9 +7,20 @@ CONNECTION_URI = "sqlite://#{ __dir__ }/test.db"
 
 database = Sequel.connect(CONNECTION_URI)  #übersetzt ruby in SQL
 
-database.create_table! :tasks do
+database.create_table! :tasks do	
   primary_key :id
   String  :name
 end
 
-# create table 'tasks' (id)
+#legt diese Spalten in der Datenbank an
+database.create_table! :users do	
+  primary_key :id
+  String :email
+  String :password
+end
+
+
+
+
+
+

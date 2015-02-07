@@ -1,4 +1,9 @@
-<h2 style="color:#008686">Hi brainless!</h2>
+
+
+
+<h2 style="color:#008686">Hi brainless!</h2> 
+<a style="color:#005252" href="/users/new">sign in</a>
+<a style="color:#005252" href="/users/new">register</a>
 
 <p>
 THIS IS YOUR VIRTUALbRAIN 
@@ -7,6 +12,13 @@ THIS IS YOUR VIRTUALbRAIN
   Do something: <input name="task" autofocus="true"/>
   <input type="submit" value="add to list"/>
 </form>
+
+
+<form method="GET" action="/">
+	<button style="color:#550000" tabindex="15" name="alphabetically">A-Z</button>
+	<button style="color:#550000" tabindex="15" name="newest">latest first</button>
+</form>
+
 
 <ul>
 	<% tasks.each do |task| %>

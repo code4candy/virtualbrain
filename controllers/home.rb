@@ -4,13 +4,19 @@ module VirtualBrain
       include VirtualBrain::Controller
 
       # crud => create-read-update-delete (Funktionen nie mischen)
-      # die 4 Standardmethoden eines Controllers! für das Datenmanagement
+      # = seperation of concerns (hier, für jede Funktion eigene ACTION erstellen )
+      # = die 4 Standardmethoden eines Controllers! für das Datenmanagement
       action 'Index' do 
         expose :tasks
 
         def call(params)
-               
-          @tasks = VirtualBrain::Repositories::TaskRepository.alphabetically
+          if params[:newest]
+            @tasks = VirtualBrain::Repositories::TaskRepository.latest_tasks
+          elsif params[:alphabetically]
+            @tasks = VirtualBrain::Repositories::TaskRepository.alphabetically
+          else
+            @tasks = VirtualBrain::Repositories::TaskRepository.all
+          end
         end
       end
 
