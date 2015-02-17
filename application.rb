@@ -14,6 +14,7 @@ module VirtualBrain
         post  '/users/create',  to: 'users#create'
         get   '/users/signin',  to: 'users#showsignin'
         post  '/sessions/create', to: 'sessions#create'
+        post  '/sessions/delete',  to: 'sessions#delete'
         get   '/imprint',       to: 'imprint#page'
 
       end

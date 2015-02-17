@@ -5,7 +5,7 @@ module VirtualBrain
     module Sessions
       include VirtualBrain::Controller
 
-      action 'Create' do 
+      action 'Create' do #Aufruf bei Klick auf login-Link
         include Lotus::Action::Session
         #params = was server vom webbrowser bekommt
         def call(params)
@@ -19,6 +19,14 @@ module VirtualBrain
         end
       end
 
+      action 'Delete' do
+        include Lotus::Action::Session
+        #params = was server vom webbrowser bekommt
+        def call(params)
+          session[:user] = nil #
+          redirect_to '/'
+        end
+      end
       
 
     end

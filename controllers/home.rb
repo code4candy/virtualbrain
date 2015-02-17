@@ -22,7 +22,6 @@ module VirtualBrain
           else
             @tasks = VirtualBrain::Repositories::TaskRepository.all
           end
-
           @user = VirtualBrain::Repositories::UserRepository.by_id(session[:user])
         end
       end
