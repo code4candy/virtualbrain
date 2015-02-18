@@ -1,60 +1,75 @@
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+</div>
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+          <li><a style="color:#005252; padding-right:10px" href="/users/signin">sign in</a></li>
+          <li><a  href="/users/new">register</a></li>
+        </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="row">
+      <div class="col-sm-8"></div>
+      <div class="col-sm-4">
+
+        <% if user %>       <!-- Abfrage, ob als User eingeloggt, dann Anzeige auf Startseite-->
+        <p><%=user.email%><p>
+          <form action='/sessions/delete' method='POST'>
+            <input type="submit" value="log out"/>
+          </form>
+          <% else%>
+
+          <% end %>
+
+          <h2 style="color:#008686">Hi brainless!</h2> 
 
 
 
-<h2 style="color:#008686">Hi brainless!</h2> 
-<% if user %>       <!-- Abfrage, ob als User eingeloggt, dann Anzeige auf Startseite-->
-<p><%=user.email%><p>
-  <form action='/sessions/delete' method='POST'>
-<button class="header-nav-link sign-out-button tooltipped tooltipped-s" data-ga-click="Header, sign out, icon:logout" aria-label="Sign out">
-
-    <span class="octicon octicon-sign-out"></span>
-
-</button>  </form>
-  <% else%>
-    <a style="color:#005252" href="/users/signin">sign in</a>
-    <a style="color:#005252" href="/users/new">register</a>
-  <% end %>
+          <p>
+            THIS IS YOUR VIRTUALbRAIN 
+          </p>
+          <% if user %>
+          <form action='/tasks/create' method='POST'>
+            Do something: <input name="task" autofocus="true"/>
+            <input type="submit" value="add to list"/>
+          </form>
 
 
-
-<button class="header-nav-link sign-out-button tooltipped tooltipped-s" data-ga-click="Header, sign out, icon:logout" aria-label="Sign out">
-
-    <span class="octicon octicon-sign-out"></span>
-
-</button>
+          <form method="GET" action="/">
+            <button style="color:#550000" tabindex="15" name="alphabetically">A-Z</button>
+            <button style="color:#550000" tabindex="15" name="newest">latest first</button>
+          </form>
 
 
+          <ul>
+            <% tasks.each do |task| %>
+            <li>
+              <form action="/tasks/delete" METHOD="POST">
+                <%= h(task.name) %>
+                <input type="hidden" value="<%= task.id %>" name="task_id"/>
+                <button style="color:#880000" tabindex="15">delete</button>
+              </form>
+            </li>
+            <% end %>
+          </ul>
+          <% end %>
+          <div class="row">
+            <div class="col-sm-8"></div>
+            <div class="col-sm-4"><a style="color:#005252" href="/imprint">imprint</a></div>
+          </div>
 
 
-
-  <p>
-    THIS IS YOUR VIRTUALbRAIN 
-  </p>
-  <% if user %>
-  <form action='/tasks/create' method='POST'>
-    Do something: <input name="task" autofocus="true"/>
-    <input type="submit" value="add to list"/>
-  </form>
-
-
-  <form method="GET" action="/">
-    <button style="color:#550000" tabindex="15" name="alphabetically">A-Z</button>
-    <button style="color:#550000" tabindex="15" name="newest">latest first</button>
-  </form>
-
-
-  <ul>
-    <% tasks.each do |task| %>
-    <li>
-      <form action="/tasks/delete" METHOD="POST">
-        <%= h(task.name) %>
-        <input type="hidden" value="<%= task.id %>" name="task_id"/>
-        <button style="color:#880000" tabindex="15">delete</button>
-      </form>
-    </li>
-    <% end %>
-  </ul>
-  <% end %>
-
-  <a style="color:#005252" href="/imprint">imprint</a>
 
