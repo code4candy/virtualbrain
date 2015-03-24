@@ -14,24 +14,27 @@ module VirtualBrain
         expose :user
 
         def call(params)
-          puts "SESSION: #{session[:user]}"
+          user_id = session[:user]  #
+          puts "SESSION: #{:user}"
           if params[:newest]
-            @tasks = VirtualBrain::Repositories::TaskRepository.latest_tasks
+            @tasks = VirtualBrain::Repositories::TaskRepository.latest_tasks(user_id)
           elsif params[:alphabetically]
-            @tasks = VirtualBrain::Repositories::TaskRepository.alphabetically
+            @tasks = VirtualBrain::Repositories::TaskRepository.alphabetically(user_id)
           else
-            @tasks = VirtualBrain::Repositories::TaskRepository.all
+            @tasks = VirtualBrain::Repositories::TaskRepository.for_user(user_id)
           end
           @user = VirtualBrain::Repositories::UserRepository.by_id(session[:user])
         end
       end
 
       action 'Create' do
-
+        include Lotus::Action::Session
         def call(params)
-          new_task = VirtualBrain::Models::Task.new({name: params[:task]}) 
+          new_task = VirtualBrain::Models::Task.new({
+            name: params[:task], 
+            user_id: session[:user]}) 
           #parameter hier ist hash von home/index
-          if !new_task.name.nil? && !new_task.name.strip.empty? 
+          if !new_task.name.nil? && !new_task.name.strip.empty? # strip->löscht Leerzeichen am Anfang und am Ende eines Strings
             # legt in Datenbank neue Zeile an und speichert dort den Task
             VirtualBrain::Repositories::TaskRepository.create(new_task)
           end     

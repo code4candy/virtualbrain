@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  	
-  	<meta charset="utf-8 ">
-    <title>Virtual Brain</title>
-    <link href='/css/style.css' type='text/css' rel='stylesheet'>
-    <!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-  </head>
-  <body>
-  	<div class= "container">
-    	<%= yield %>	<!-- hier wird der RubyCode eingefügt -->
+<head>
+ 
+ <meta charset="utf-8 ">
+ <title>Virtual Brain</title>
+ <link href='/css/style.css' type='text/css' rel='stylesheet'>
+ <!-- Latest compiled and minified CSS -->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+ <!-- Optional theme -->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+</head>
+<body>
+
+  <div class= "container">
+      <div class="jumbotron" style="color:#66CCFF">
+    <div class="row">
+      <div class="col-sm-9">
+        <h1 style="color:#008686">VIRTUALbRAIN</h1>
+        <p>
+          - YOUR DENKARIUM -
+        </p>
+      </div>
+      <div class="col-sm-3"></div>
+      <img src="/IMAG0006_1_1.jpg" class="img-circle" alt="IMAG0006_1_1.jpg" width="200" height="200"> 
     </div>
-    <!-- Latest compiled and minified JavaScript -->
- 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  </body>
+  </div>
+   <%= yield %>	<!-- hier wird der RubyCode eingefügt -->
+ </div>
+ <!-- Latest compiled and minified JavaScript -->
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</body>
 </html>
